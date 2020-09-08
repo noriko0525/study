@@ -143,24 +143,10 @@ $(function() {
             console.log(value);
             $('.memoNo'+lng+' .memoText').html('<textarea id="txarer'+lng+'">'+value+'</textarea>');
             $('#txarer'+lng+'').focus();
-            // $('.memoNo'+lng+' .memoText').select();
-            // $('#txarer'+ lng +'').remove();
+            $('#txarer'+lng+'').select();
+            $('#txarer'+lng+'').remove();
             return false;
         });
-        // $('.memoNo'+ lng +' .memoText').on("click",function(){
-        //     $(this).addClass('.memoTextNo'+lng+'');
-        //     const value = $(this).text();
-        //     $(this).html('<textarea id="txarer'+lng+'">'+value+'</textarea>');
-        //     $('#txarer'+ lng +'').focus();
-        //     $('#txarer'+ lng +'').select();
-        //     $('#txarer'+ lng +'').blur(function() {
-        //         const valeu = $(this).val()
-        //         $(this).remove();
-        //         $('.memoNo'+ lng +' .memoText').text(valeu);
-        //         console.log(valeu);
-        //         return false;
-        //     });
-        // })
         notclick();
          
         $(document).click(function(event) {
