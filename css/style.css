@@ -1,0 +1,243 @@
+body{
+    margin:0;
+    padding:0;
+    text-align:left;
+    font-size: 32px;
+    width:100%;
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+header{
+    padding:10px;
+}
+h1{
+    margin:0px;
+    text-align:center;
+}
+#kadai{
+    width: 100%;
+}
+#task{
+    margin:0 auto;
+}
+#inputerea,#title,#products,#sent{
+    display: flex;
+}
+#inputerea,#sent{
+    width: 600px;
+    margin:0 auto;
+}
+#sent{
+    margin:30px auto;
+    justify-content: center;
+}
+#sent #save{
+    margin:0 0 0 20px;
+}
+#title {
+    display: flex;
+    align-items: center;
+}
+#taskbox,#responsible{
+    width: 200px;
+    height: 25px;
+    border: 2px solid #b3b3b3;  /* 枠線 */
+    border-radius: 4px;   /* 角丸 */
+    background-color: snow;  /* 背景色 */
+    font-size: 14px;          /* 文字サイズ */
+    line-height: 1.2;        /* 行の高さ */
+    justify-content: center;
+    align-items: center;
+}
+#inputerea{
+    background-color: #e9967a;
+    border-radius: 10px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+#inputerea p{
+    margin:0 10px;
+    font-size:20px;
+    font-weight: bold;
+    padding:4px 0;
+    height: 25px;
+    vertical-align: 25px;
+}
+#output{
+    margin:0 auto;
+}
+#outputarea{
+    /* display: flex; */
+    /* padding:20px; */
+    width: 600px;
+    margin:0 auto;
+}
+#projects{
+    /* width: 580px; */
+    background-color: #60b7d4;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+}
+#projects p{
+    font-size:20px;
+    font-weight: bold;
+    width: 550px;
+    margin:10px auto;
+    text-align: center;
+}
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 580px;
+    margin:0 auto;
+}
+table tr {
+	background: #fff;
+}
+table tr:nth-child(odd) {
+	background: #eee;
+}
+th,td{
+    padding:10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+th{
+    height: 30px;
+    width:43%;
+}
+td{
+    text-align :center;
+}
+td:nth-of-type(1){
+    height: 30px;
+    width:43%;
+}
+#member{
+    width: 650px;
+    margin:0 0 0 50px;
+    padding:10px;
+}
+button.input,button.save{
+    display: inline-block;
+    text-decoration: none;
+    color: #FFF;
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+    border:none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    }
+button.input:hover,button.save:hover{
+    cursor: pointer;
+    opacity: 0.5 ;
+}
+button.input{
+    background: #e9967a;
+}
+button.save{
+    background: #60b7d4;
+}
+@media screen and (max-width: 768px){
+    body{
+        background-color: #d3d3d3;
+    }
+    h1{
+        width: 100%;
+        font-size:21px;
+        padding:20px 0 0 0;
+    }
+    #task{
+        margin:10px;
+    }
+    #inputerea, #sent ,#outputarea{
+        width: 100%;
+    }
+    #sent{
+        margin:10px;
+    }
+    #sent #save{
+        margin:0 !important;
+    }
+    #inputerea{
+        flex-wrap:wrap;
+    }
+    #title,#products{
+        width: 100%;
+    }
+    #taskbox,#responsible{
+        font-size: 18px;
+    }
+    #inputerea p{
+        width: 60px;
+        padding-top:8px;
+        font-size:14px;
+        text-align: right;
+        height: 18px;
+        vertical-align: 18px;
+    }
+    button{
+        position: relative;
+        display: inline-block;
+        padding: 0.25em 0.5em;
+        text-decoration: none;
+        color: #313131;
+        background: #f3fbfffd;/*色*/
+        border: solid 1px #8b8b8b;/*線色*/
+        border-radius: 4px;
+        box-shadow: inset 0 1px 0 #ffffff33;
+        text-shadow: 0 1px 0 #00000033;
+    }
+    #taskbox, #responsible {
+        width: 60%;
+        height: 25px;
+        margin: 0 10px 0 0;
+    }
+    #output{
+        margin: 10px;
+    }
+    table{
+        width:100%;
+    }
+    th, td {
+        padding: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        font-size:14px;
+    }
+    td:nth-of-type(1) {
+        height: 30px;
+        width: 30%;
+    }
+    #projects p {
+        width:100%;
+        margin:0 0 10px 0;
+        font-size:14px;
+    }
+    button.input,button.save{
+        display: inline-block;
+        text-decoration: none;
+        color: #FFF;
+        width: 120px;
+        height: 30px;
+        border-radius: 10px;
+        border:none;
+        text-align: center;
+        font-weight: bold;
+        font-size: 14px;
+        }
+    button.input:hover,button.save:hover{
+        cursor: pointer;
+        opacity: 0.5 ;
+    }
+    button.input{
+        background: #e9967a;
+    }
+    button.save{
+        background: #60b7d4;
+    }
+}

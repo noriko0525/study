@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<title>myMemoPad</title>
+<script src="js/jquery-2.1.3.min.js"></script>
+<link rel="stylesheet" href="css/style.css?200901">
+</head>
+<body>
+<header>
+<h1>買い物メモ帳</h1>
+</header>
+<!-- 課題追加 -->
+<div id="task">
+    <div id="inputerea">
+        <div id="title">
+            <p>買うもの</p>
+            <textarea id="taskbox"></textarea>
+        </div>
+        <div id="products">
+            <p>個数</p>
+            <textarea id="responsible"></textarea>
+        </div>
+    </div>
+    <div id="sent">
+        <button id="input" class="input">買う</button>
+    </div>
+</div>
+<div id="output">
+    <div id="outputarea">
+        <!-- 買い足し管理 -->
+        <div id="projects">
+            <p>毎回保存をおしてね<br>
+            個数はクリックして書き換えできるよ</p>
+            <table id="inputprojects">
+            </table>
+        </div>
+        <div id="sent">
+            <button id="save" class="save">保存</button>
+        </div>
+        <textarea id="tdtx0" onclick="this.select();">11</textarea>
+    </div>
+</div>
+<script>
+$("#input").on('click',function(){
+    const value = $("#taskbox").val();
+    const responsible = $("#responsible").val();
+    const lng = $( '#inputprojects tr' ).length;
+    const html = '<tr><th id=thname'+lng+'>'+value+'</th><td id=task'+lng+' class="itemp">'+responsible+'</td><td><button id="gyou'+lng+'">削除</button></td></tr>';
+    $("#inputprojects").prepend(html);
+    $("#taskbox,#responsible").val("");
+    $('#inputprojects #gyou'+lng+'').on('click', function(){      
+        $(this).parent().parent().remove();
+        save();
+    });
+    $('#inputprojects #task'+lng+'').on('click', function(){
+        console.log("新");
+        const elm = $(this).children('textarea').length;
+        if(elm != 0){
+            return;
+        }
+        const init = $(this).text();
+        $(this).html('<textarea id="tdtx'+lng+'">'+init+'</textarea>');
+        $('#tdtx'+lng+'').focus();
+        $('#tdtx'+lng+'').select();
+        $('#tdtx'+lng+'').blur(function() {
+            const initlng = $('#inputprojects #tdtx'+lng+'').val();
+            $(this).remove();
+            $('#inputprojects #task'+lng+'').text(initlng);
+            console.log(initlng);
+        });
+    });
+});
+function save(){
+    //jsonとして格納処理
+    var data = [];
+    var tableTrlength = $("#inputprojects tr");
+    for(var i=0;i<tableTrlength.length;i++){
+        var cells = tableTrlength.eq(i).children("th, td.itemp");//1行目から順番に列を取得(th、td)
+        data[i] = [];
+        for( var j=0,m=cells.length;j<m;j++ ){
+            data[i][j] = cells.eq(j).text();//i行目j列の文字列を取得
+        }
+    }
+    console.log(data);
+    var grstatus = [0,1];
+    //localStorageに保存します。
+    localStorage.setItem('json', JSON.stringify(data));
+    // localStorage.setItem(value,responsible);
+}
+$("#save").on('click',save);
+//ページリロード時の処理
+//localStorageから取り出し
+function load() {
+    var data = JSON.parse(localStorage.getItem('json'));
+    console.log(data);
+    if(data == null){
+        return;
+    }
+    var wak = "";
+    for (let i = 0; i < data.length; i++) {
+        wak += "<tr>";
+        for (j = 0; j < data[i].length; j++) {
+            if(j == 0){
+                wak += '<th id="thname'+i+'">';
+                wak += data[i][j];
+                wak += '</th>';
+            }else{
+                wak += '<td id="task'+i+'" class="itemp">';
+                wak += data[i][j];
+                wak += '</td>';
+                wak += '<td><button id="gyou'+ i +'">削除</button></td>'
+            };
+        }
+        wak += "</tr>";
+    }
+    console.log(wak);
+    $("#inputprojects").append(wak);
+    for (let i = 0; i < data.length; i++) {
+        $('#inputprojects #gyou'+i+'').on('click', function(){      
+            const thname = $('#inputprojects #thname'+i+'').text();
+            console.log(thname);
+            $(this).parent().parent().remove();
+            save();
+        });
+    }
+    for (let i = 0; i < data.length; i++) {
+        $('#inputprojects #task'+i+'').on('click', function(){
+            const init = $('#inputprojects #task'+i+'').text();
+            console.log("init" + init);
+            const elm = $(this).children('textarea').length;
+            if(elm != 0){
+                return;
+            }
+            $(this).html('<textarea id="tdtx'+i+'">'+init+'</textarea>');
+            $('#tdtx'+i+'').focus();
+            $('#tdtx'+i+'').select();
+            $('#tdtx'+i+'').blur(function() {
+                const initlng = $('#inputprojects #tdtx'+i+'').val();
+                console.log("旧");
+                $(this).remove();
+                $('#inputprojects #task'+i+'').text(initlng);
+            });
+        });
+    }
+}
+load();
+
+</script>
+</body>
+</html>
